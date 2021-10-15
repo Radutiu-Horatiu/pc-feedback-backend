@@ -3,6 +3,8 @@
 FastAPI Documentation
 https://fastapi.tiangolo.com/tutorial/first-steps/
 
+# git clone https://github.com/Radutiu-Horatiu/pc-feedback-app.git
+
 # cd in project
 
 # pip install fastapi
