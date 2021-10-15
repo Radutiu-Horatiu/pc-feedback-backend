@@ -9,6 +9,7 @@ https://fastapi.tiangolo.com/tutorial/first-steps/
 
 # pip install fastapi
 # pip install uvicorn
+# pip install firebase_admin
 
 # uvicorn main:app --reload
 
