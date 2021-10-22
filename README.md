@@ -3,7 +3,7 @@
 FastAPI Documentation
 https://fastapi.tiangolo.com/tutorial/first-steps/
 
-# git clone https://github.com/Radutiu-Horatiu/pc-feedback-app.git
+# git clone https://github.com/Radutiu-Horatiu/pc-feedback-backend.git
 
 # cd in project
 
@@ -13,4 +13,7 @@ https://fastapi.tiangolo.com/tutorial/first-steps/
 
 # uvicorn main:app --reload
 
-Server stared on http://127.0.0.1:8000/docs/
+Server started on http://127.0.0.1:8000/docs/
+
+New updates:
+# git checkout -b <branch_name>
