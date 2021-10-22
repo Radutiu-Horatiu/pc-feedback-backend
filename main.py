@@ -19,6 +19,10 @@ async def root():
 @app.get("/test")
 def get_test():
     # example to query database from FastAPI
-    db.collection(u'test').document(u"ceva").set({"test":"test"})
+    db.collection('test').document("ceva").set({"test":"test"})
     
     return {"text":"This is a get request from FastAPI."}
+
+@app.get("/ceva")
+def get_ceva():
+    return {"ceva":"Asta e inca un test."}
