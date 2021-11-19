@@ -24,7 +24,7 @@ class User_Item(BaseModel):
     fiscal_year: int
     personal_number: str
     career_level: str
-    organizational_assigment: str
+    organisational_assigment: str
 
 
 @app.get("/")
@@ -47,13 +47,13 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organizational_assigment: str):
-    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organizational assigment":organizational_assigment})
+def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str):
+    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment})
     return {"message":"user added"}
 
 @app.post("/updateUser")
 def post_update(obj:User_Item):
-    return update_user(obj.id, {"name":obj.name,"username":obj.username,"email":obj.email,"role":obj.role,"fiscal year":obj.fiscal_year,"personal number":obj.personal_number,"career level":obj.career_level,"organizational assigment":obj.organizational_assigment})
+    return update_user(obj.id, {"name":obj.name,"username":obj.username,"email":obj.email,"role":obj.role,"fiscal year":obj.fiscal_year,"personal number":obj.personal_number,"career level":obj.career_level,"organisational assigment":obj.organisational_assigment})
 
 @app.delete("/deleteUser")
 def delete(id:str):
