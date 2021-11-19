@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,8 +17,15 @@ app.add_middleware(
 
 class User_Item(BaseModel):
     id: str
-    nume: str
-    prenume: str
+    name: str
+    username: str
+    email: str
+    role: str
+    fiscal_year: int
+    personal_number: str
+    career_level: str
+    organizational_assigment: str
+
 
 
 @app.get("/")
@@ -40,8 +48,8 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add(nume:str, prenume:str):
-    add_user({"nume":nume,"prenume":prenume})
+def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organizational_assigment: str):
+    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organizational assigment":organizational_assigment})
     return {"message":"user added"}
 
 @app.post("/updateUser")
