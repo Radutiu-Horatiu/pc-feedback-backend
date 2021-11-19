@@ -40,8 +40,8 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add():
-    add_user({"nume":"ste", "prenume":"rosca"})
+def post_add(nume:str, prenume:str):
+    add_user({"nume":nume,"prenume":prenume})
     return {"message":"user added"}
 
 @app.post("/updateUser")
