@@ -27,7 +27,6 @@ class User_Item(BaseModel):
     organizational_assigment: str
 
 
-
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -54,7 +53,7 @@ def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, 
 
 @app.post("/updateUser")
 def post_update(obj:User_Item):
-    return update_user(obj.id, {"nume":obj.nume,"prenume":obj.prenume})
+    return update_user(obj.id, {"name":obj.name,"username":obj.username,"email":obj.email,"role":obj.role,"fiscal year":obj.fiscal_year,"personal number":obj.personal_number,"career level":obj.career_level,"organizational assigment":obj.organizational_assigment})
 
 @app.delete("/deleteUser")
 def delete(id:str):
