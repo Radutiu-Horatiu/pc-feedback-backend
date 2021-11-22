@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 from datetime import date
+from typing import List
 
-class User_Item(BaseModel)
+
+class User_Item(BaseModel):
     id: str
     email: str
     username: str
@@ -12,13 +14,13 @@ class User_Item(BaseModel)
     career_level: str
     organizational_assgmnt: str
 
-class Projects_Item(BaseModel)
+class Projects_Item(BaseModel):
     project_id: str
     project_name: str
     start_date: date
     description: str
 
-class Feedback_Item(BaseModel)
+class Feedback_Item(BaseModel):
     from_user_id: str
     to_user_id : str
     status: str
@@ -27,15 +29,15 @@ class Feedback_Item(BaseModel)
     list_of_categories: List[str]
     feedback_date: date
 
-class Teams(BaseModel)
+class Team_Item(BaseModel):
     team_id: str
-    member_list: List[]
-    feedback_list: List[]
+    member_list: List[User_Item]
+    feedback_list: List[Feedback_Item]
 
-class PEGS(BaseModel)
+class PEG_Item(BaseModel):
     peg_id: str
     fiscal_year: int 
-    user_id: int 
+    user_id: int
     personal_number: str
     date_of_peg: date
     project_id: int
@@ -47,16 +49,15 @@ class PEGS(BaseModel)
     criteria: int 
     status: str 
 
-class PEG_Criteria(BaseModel)
-    id: str
-    peg_id: str 
+class PEG_Criteria_Item(BaseModel):
     peg_criteria_id: str
+    peg_id: str 
     rating: int
 
-class PEG_Criteria_Description(BaseModel)
+class PEG_Criteria_Description_Item(BaseModel):
     id: str
     name: str
-    description: text
+    description: str
 
 
 
