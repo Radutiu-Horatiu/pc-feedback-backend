@@ -21,7 +21,7 @@ def update_user(id, obj):
   print(obj)
   user_ref = db.collection("users").document(id)
   try:
-    user_ref.update({"nume":obj["nume"], "prenume":obj["prenume"]})
+    user_ref.update({"name":obj["name"], "username":obj["username"]},{"email":obj["email"], "role":obj["role"]},{"fiscal year":obj["fiscal_year"], "persinal number":obj["personal_number"]},{"career level":obj["career_lever"], "organisational assigment":obj["organisational_assigment"]})
     return {"message":"updated obj"}
   except:
     return {"error":"id dosent exist"}
