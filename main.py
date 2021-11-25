@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import datetime
+import time
 
 from firebase import db
 from crud_operations import *
 from pydantic import BaseModel
+from crud_PEG import *
+
+
 
 app = FastAPI()
 app.add_middleware(
@@ -53,3 +58,20 @@ def delete(id:str):
     delete_user(id)
     return {"message":"user deleted"}
 
+@app.post("/addPeg")
+def post_peg(obj: PEG_Item):
+    add_peg(obj)
+    return {"message":"peg added"}
+
+@app.get("/allPegs")
+def get_pegs():
+    return get_all_pegs()
+
+@app.get("/getPeg")
+def get_peg_by_id(id:str):
+    return get_peg(id)
+
+@app.delete("/deletePeg")
+def delete_peg_by_id(id: str):
+    delete_peg(id)
+    return {'message': 'PEG deleted'}
