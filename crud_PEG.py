@@ -1,4 +1,5 @@
 from models import PEG_Item
+from typing import List
 from firebase import db
 import datetime
 import time
@@ -23,4 +24,20 @@ def add_peg(obj):
         "Status": obj.status
     }
     db.collection("peg").add(peg_obj)
+
+def get_all_pegs():
+  allPegs = []
+  pegs = db.collection(u'peg').stream()
+  for peg in pegs:
+      allPegs.append(f'{peg.to_dict()}')    
+  return allPegs
+
+def get_peg(id):
+    peg_ref = db.collection(u'peg').document(id)
+    return peg_ref.get().to_dict()
+
+
+def delete_peg(id):
+  peg_ref = db.collection("peg").document(id)
+  peg_ref.delete() 
 

@@ -37,10 +37,10 @@ class Team_Item(BaseModel):
 class PEG_Item(BaseModel):
     peg_id: str
     fiscal_year: int 
-    user_id: int
+    user_id: str
     personal_number: str
     date_of_peg: date
-    project_id: int
+    project_id: str
     customer_name: str
     name_of_project: str
     name_of_manager: str 
