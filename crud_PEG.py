@@ -29,7 +29,7 @@ def get_all_pegs():
   allPegs = []
   pegs = db.collection(u'peg').stream()
   for peg in pegs:
-      allPegs.append(f'{peg.to_dict()}')    
+      allPegs.append(peg.to_dict())    
   return allPegs
 
 def get_peg(id):
