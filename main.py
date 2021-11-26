@@ -10,9 +10,6 @@ from pydantic import BaseModel
 from crud_PEG import *
 from models import *
 
-
-
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
