@@ -14,8 +14,8 @@ def get_user(id):
   user_ref = db.collection("users").document(id)
   return user_ref.get().to_dict()
 
-def add_user(obj):
-  db.collection("users").add(obj) 
+def add_user(obj, uid):
+  db.collection("users").document(uid).set(obj)
 
 def update_user(id, obj):
   print(obj)

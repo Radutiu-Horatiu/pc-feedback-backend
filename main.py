@@ -52,8 +52,8 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str):
-    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment})
+def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str, uid: str):
+    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment}, uid)
     return {"message":"user added"}
 
 @app.post("/updateUser")
