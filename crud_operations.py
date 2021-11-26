@@ -29,3 +29,12 @@ def update_user(id, obj):
 def delete_user(id):
   user_ref = db.collection("users").document(id)
   user_ref.delete()
+
+doc_ref = db.collection(u'users').document('uid')
+doc = doc_ref.get()
+
+def get_all_users(doc):
+  if doc.exists:
+      print(f'Document data: {doc.to_dict()}')
+  else:
+      print(u'No such document!')

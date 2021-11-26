@@ -60,3 +60,7 @@ def delete(id:str):
     delete_user(id)
     return {"message":"user deleted"}
 
+
+@app.get("/getAllUsers")
+def get_all():
+    return get_all_users(doc)
