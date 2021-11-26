@@ -30,11 +30,11 @@ def delete_user(id):
   user_ref = db.collection("users").document(id)
   user_ref.delete()
 
-doc_ref = db.collection(u'users').document('uid')
-doc = doc_ref.get()
 
-def get_all_users(doc):
-  if doc.exists:
-      print(f'Document data: {doc.to_dict()}')
-  else:
-      print(u'No such document!')
+def get_all_users():
+  all_users=[]
+  doc_ref = db.collection(u'users').stream()
+  
+  for user in doc_ref:
+    all_users.append(user.to_dict())
+  return all_users

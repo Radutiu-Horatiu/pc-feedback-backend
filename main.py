@@ -63,4 +63,4 @@ def delete(id:str):
 
 @app.get("/getAllUsers")
 def get_all():
-    return get_all_users(doc)
+    return get_all_users()
