@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import datetime
 import time
 
+from firebase_admin import firestore
+
 from firebase import db
 from crud_operations import *
 from pydantic import BaseModel
@@ -92,16 +94,27 @@ def delete_peg_by_id(id: str):
 def get_feedback_by_id(id:str):
     return get_feedback(id)
 
+@app.get("/getAllFeedback")
+def get_all_feedbacks():
+  allFeedbacks = []
+  feedbacks = db.collection(u'feedback').stream()
+  for f in feedbacks:
+      allFeedbacks.append(f.to_dict())    
+  return allFeedbacks
+
 @app.post("/addFeedback")
-def post_add_feedback(from_user_id: str, to_user_id: str , status: str, project_id: str, anonym:bool, list_of_categories:List[str], feedback_date: date):
-    date_of_feedback = feedback_date.strftime("%m-%d-%Y")
-    date = datetime.datetime.strptime(date_of_feedback, "%m-%d-%Y")
-    time_tuple = date.timetuple()
-    timestamp = time.mktime(time_tuple)
-
-
-    add_feedback({"from_user_id": from_user_id, "to_user_id":to_user_id, "status":status, "project_id": project_id, "anonym":anonym, "list_of_categories":list_of_categories, "feedback_date":timestamp})
-    return {"message":"user added"}
+def post_add_feedback(obj:Feedback_Item):
+    my_obj = {
+        "from_user_id": obj.from_user_id,
+        "to_user_id" : obj.to_user_id,
+        "status": obj.status,
+        "project_id": obj.project_id,
+        "anonym": obj.anonym,
+        "category": obj.category,
+        "timestamp":firestore.SERVER_TIMESTAMP
+    }
+    add_feedback(my_obj)
+    return {"message":"feedback added"}
 
 @app.post("/updateFeedback")
 def post_update_feedback(from_user_id: str, to_user_id: str , status: str, project_id: str, anonym:bool, list_of_categories:List[str], feedback_date: date):
