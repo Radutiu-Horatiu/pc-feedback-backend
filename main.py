@@ -1,10 +1,15 @@
 from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import datetime
+import time
 
 from firebase import db
 from crud_operations import *
 from pydantic import BaseModel
+from crud_PEG import *
+
+
 
 app = FastAPI()
 app.add_middleware(
@@ -47,8 +52,8 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str):
-    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment})
+def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str, uid: str):
+    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment}, uid)
     return {"message":"user added"}
 
 @app.post("/updateUser")
@@ -60,7 +65,25 @@ def delete(id:str):
     delete_user(id)
     return {"message":"user deleted"}
 
-
 @app.get("/getAllUsers")
 def get_all():
     return get_all_users()
+
+@app.post("/addPeg")
+def post_peg(obj: PEG_Item):
+    add_peg(obj)
+    return {"message":"peg added"}
+
+@app.get("/allPegs")
+def get_pegs():
+    return get_all_pegs()
+
+@app.get("/getPeg")
+def get_peg_by_id(id:str):
+    return get_peg(id)
+
+@app.delete("/deletePeg")
+def delete_peg_by_id(id: str):
+    delete_peg(id)
+    return {'message': 'PEG deleted'}
+
