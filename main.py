@@ -31,6 +31,10 @@ class User_Item(BaseModel):
     career_level: str
     organisational_assigment: str
 
+class Dummy_User_Item(BaseModel):
+    name: str
+    uid: str
+    email: str
 
 @app.get("/")
 async def root():
@@ -52,8 +56,8 @@ def get_user_by_id(id:str):
     return get_user(id)
 
 @app.post("/addUser")
-def post_add(name: str, username: str, email: str, role: str, fiscal_year: int, personal_number: str, career_level: str, organisational_assigment: str, uid: str):
-    add_user({"name":name,"username":username,"email":email,"role":role,"fiscal year":fiscal_year,"personal number":personal_number,"career level":career_level,"organisational assigment":organisational_assigment}, uid)
+def post_add(obj:Dummy_User_Item):
+    add_user({"name":obj.name,"email":obj.email}, obj.uid)
     return {"message":"user added"}
 
 @app.post("/updateUser")
