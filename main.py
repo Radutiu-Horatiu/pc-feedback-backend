@@ -8,6 +8,8 @@ from firebase import db
 from crud_operations import *
 from pydantic import BaseModel
 from crud_PEG import *
+from models import *
+
 
 
 
@@ -82,3 +84,34 @@ def get_peg_by_id(id:str):
 def delete_peg_by_id(id: str):
     delete_peg(id)
     return {'message': 'PEG deleted'}
+
+@app.get("/getFeedback")
+def get_feedback_by_id(id:str):
+    return get_feedback(id)
+
+@app.post("/addFeedback")
+def post_add_feedback(from_user_id: str, to_user_id: str , status: str, project_id: str, anonym:bool, list_of_categories:List[str], feedback_date: date):
+    date_of_feedback = feedback_date.strftime("%m-%d-%Y")
+    date = datetime.datetime.strptime(date_of_feedback, "%m-%d-%Y")
+    time_tuple = date.timetuple()
+    timestamp = time.mktime(time_tuple)
+
+
+    add_feedback({"from_user_id": from_user_id, "to_user_id":to_user_id, "status":status, "project_id": project_id, "anonym":anonym, "list_of_categories":list_of_categories, "feedback_date":timestamp})
+    return {"message":"user added"}
+
+@app.post("/updateFeedback")
+def post_update_feedback(from_user_id: str, to_user_id: str , status: str, project_id: str, anonym:bool, list_of_categories:List[str], feedback_date: date):
+
+    date_of_feedback = feedback_date.strftime("%m-%d-%Y")
+    date = datetime.datetime.strptime(date_of_feedback, "%m-%d-%Y")
+    time_tuple = date.timetuple()
+    timestamp = time.mktime(time_tuple)
+
+
+    return update_feedback(id, {"from_user_id": from_user_id, "to_user_id":to_user_id, "status":status, "project_id": project_id, "anonym":anonym, "list_of_categories":list_of_categories, "feedback_date":timestamp})
+
+@app.delete("/deleteFeedback")
+def delete_Feedback(id:str):
+    delete_feedback(id)
+    return {"message":"user deleted"}
