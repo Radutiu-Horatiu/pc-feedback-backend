@@ -44,20 +44,17 @@ class Dummy_User_Item(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/test")
-def get_test():
-    # example to query database from FastAPI
-    db.collection('test').document("ceva").set({"test":"test"})
-
-    return {"text":"This is a get request from FastAPI."}
-
-@app.get("/ceva")
-def get_ceva():
-    return {"ceva":"Asta e inca un test."}
-
 @app.get("/getUser")
 def get_user_by_id(id:str):
     return get_user(id)
+
+@app.get("/getAllUsers")
+def get_all_feedbacks():
+  allUsers = []
+  users = db.collection(u'users').stream()
+  for u in users:
+      allUsers.append(u.to_dict())    
+  return allUsers
 
 @app.post("/addUser")
 def post_add(obj:Dummy_User_Item):
