@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import datetime
 import time
+import uuid
 
 from firebase_admin import firestore
 
@@ -111,7 +112,8 @@ def post_add_feedback(obj:Feedback_Item):
         "project_id": obj.project_id,
         "anonym": obj.anonym,
         "category": obj.category,
-        "timestamp":firestore.SERVER_TIMESTAMP
+        "timestamp":firestore.SERVER_TIMESTAMP,
+        "uid":uuid.uuid4().hex
     }
     add_feedback(my_obj)
     return {"message":"feedback added"}

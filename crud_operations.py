@@ -31,7 +31,7 @@ def delete_user(id):
   user_ref.delete()
 
 def add_feedback(obj):
-  db.collection("feedback").add(obj)
+  db.collection("feedback").document(obj["uid"]).set(obj)
 
 #add_feedback({"nume": "inca un test", "prenume": "test9999"})
 
