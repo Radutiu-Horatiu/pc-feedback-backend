@@ -108,7 +108,7 @@ def get_feedback_by_id(id: str):
 @app.get("/getAllFeedback")
 def get_all_feedbacks():
     allFeedbacks = []
-    feedbacks = db.collection(u'feedback').stream()
+    feedbacks = db.collection(u'feedback').order_by("timestamp").stream()
     for f in feedbacks:
         allFeedbacks.append(f.to_dict())
     return allFeedbacks
