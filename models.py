@@ -26,8 +26,7 @@ class Feedback_Item(BaseModel):
     status: str
     project_id: str
     anonym: bool
-    list_of_categories: List[str]
-    feedback_date: date
+    category: str
 
 class Team_Item(BaseModel):
     team_id: str
