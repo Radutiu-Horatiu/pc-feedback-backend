@@ -46,6 +46,7 @@ async def root():
 
 @app.get("/getUser")
 def get_user_by_id(id: str):
+    print(id)
     return get_user(id)
 
 
