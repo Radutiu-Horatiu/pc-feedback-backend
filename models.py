@@ -38,8 +38,7 @@ class PEG_Item(BaseModel):
     peg_id: str
     fiscal_year: int 
     user_id: str
-    personal_number: str
-    date_of_peg: date
+    date_of_peg: str
     project_id: str
     customer_name: str
     name_of_project: str

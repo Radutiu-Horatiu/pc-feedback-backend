@@ -5,15 +5,10 @@ import datetime
 import time
 
 def add_peg(obj):
-    date_of_peg = obj.date_of_peg.strftime("%m-%d-%Y")
-    date = datetime.datetime.strptime(date_of_peg, "%m-%d-%Y")
-    time_tuple = date.timetuple()
-    timestamp = time.mktime(time_tuple)
     peg_obj = {
         "Fiscal year": obj.fiscal_year,
         "User id": obj.user_id,
-        "Personal Number": obj.personal_number,
-        "Date of PEG": timestamp,
+        "Date of PEG": obj.date_of_peg,
         "Project id": obj.project_id,
         "Customer name": obj.customer_name,
         "Project name": obj.name_of_project,
