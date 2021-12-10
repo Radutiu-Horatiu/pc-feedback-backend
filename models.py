@@ -27,6 +27,7 @@ class Feedback_Item(BaseModel):
     project_id: str
     anonym: bool
     category: str
+    text: str
 
 class Team_Item(BaseModel):
     team_id: str

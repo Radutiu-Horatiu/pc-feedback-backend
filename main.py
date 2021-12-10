@@ -124,7 +124,8 @@ def post_add_feedback(obj: Feedback_Item):
         "anonym": obj.anonym,
         "category": obj.category,
         "timestamp": firestore.SERVER_TIMESTAMP,
-        "uid": uuid.uuid4().hex
+        "uid": uuid.uuid4().hex,
+        "text": obj.text
     }
     add_feedback(my_obj)
     return {"message": "feedback added"}
