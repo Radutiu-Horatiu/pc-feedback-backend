@@ -76,6 +76,10 @@ def delete(id: str):
     return {"message": "user deleted"}
 
 
+@app.get("/getAllUsers")
+def get_all():
+    return get_all_users()
+
 @app.post("/addPeg")
 def post_peg(obj: PEG_Item):
     add_peg(obj)
@@ -96,7 +100,6 @@ def get_peg_by_id(id: str):
 def delete_peg_by_id(id: str):
     delete_peg(id)
     return {'message': 'PEG deleted'}
-
 
 @app.get("/getFeedback")
 def get_feedback_by_id(id: str):

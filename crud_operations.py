@@ -26,6 +26,14 @@ def delete_user(id):
   user_ref = db.collection("users").document(id)
   user_ref.delete()
 
+def get_all_users():
+  all_users=[]
+  doc_ref = db.collection(u'users').stream()
+  
+  for user in doc_ref:
+    all_users.append(user.to_dict())
+  return all_users
+
 def add_feedback(obj):
   db.collection("feedback").document(obj["uid"]).set(obj)
 
