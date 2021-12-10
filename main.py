@@ -67,10 +67,7 @@ def post_add(obj: Dummy_User_Item):
 
 @app.post("/updateUser")
 def post_update(obj: User_Item):
-    return update_user(obj.id, {"name": obj.name, "username": obj.username, "email": obj.email, "role": obj.role,
-                                "fiscal year": obj.fiscal_year, "personal number": obj.personal_number,
-                                "career level": obj.career_level,
-                                "organisational assigment": obj.organisational_assigment})
+    return update_user(obj.id, obj)
 
 
 @app.delete("/deleteUser")

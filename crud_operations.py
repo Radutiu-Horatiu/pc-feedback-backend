@@ -19,11 +19,8 @@ def add_user(obj, uid):
 
 def update_user(id, obj):
   user_ref = db.collection("users").document(id)
-  try:
-    user_ref.update({"name":obj["name"], "username":obj["username"]},{"email":obj["email"], "role":obj["role"]},{"fiscal year":obj["fiscal_year"], "persinal number":obj["personal_number"]},{"career level":obj["career_lever"], "organisational assigment":obj["organisational_assigment"]})
-    return {"message":"updated obj"}
-  except:
-    return {"error":"id dosent exist"}
+  user_ref.update({"name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assigment":obj.organisational_assigment})
+  return {"message":"updated obj"}
 
 def delete_user(id):
   user_ref = db.collection("users").document(id)
