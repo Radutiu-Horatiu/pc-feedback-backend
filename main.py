@@ -30,7 +30,7 @@ class User_Item(BaseModel):
     fiscal_year: int
     personal_number: str
     career_level: str
-    organisational_assigment: str
+    organisational_assignment: str
 
 
 class Dummy_User_Item(BaseModel):
@@ -46,7 +46,6 @@ async def root():
 
 @app.get("/getUser")
 def get_user_by_id(id: str):
-    print(id)
     return get_user(id)
 
 

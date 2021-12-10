@@ -19,7 +19,7 @@ def add_user(obj, uid):
 
 def update_user(id, obj):
   user_ref = db.collection("users").document(id)
-  user_ref.update({"name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assigment":obj.organisational_assigment})
+  user_ref.update({"name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assignment":obj.organisational_assignment})
   return {"message":"updated obj"}
 
 def delete_user(id):
@@ -43,10 +43,7 @@ def get_feedback(id_feedback):
   feedback_ref = db.collection("feedback").document(id_feedback)
   return feedback_ref.get().to_dict()
 
-print(get_feedback("rd17sULU01bO4WieLFdP"))
-
 def update_feedback(feedback_id, obj):
-    print(obj)
     feedback_ref = db.collection("feedback").document(feedback_id)
     feedback_ref.update(obj)
     try:
