@@ -15,11 +15,11 @@ def get_user(id):
   return user_ref.get().to_dict()
 
 def add_user(obj, uid):
-  db.collection("users").document(uid).set(obj)
+  db.collection("users").document(uid).set({"id":uid, "name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assignment":obj.organisational_assignment})
 
 def update_user(id, obj):
   user_ref = db.collection("users").document(id)
-  user_ref.update({"name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assignment":obj.organisational_assignment})
+  user_ref.update({"id":id, "name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assignment":obj.organisational_assignment})
   return {"message":"updated obj"}
 
 def delete_user(id):

@@ -33,12 +33,6 @@ class User_Item(BaseModel):
     organisational_assignment: str
 
 
-class Dummy_User_Item(BaseModel):
-    name: str
-    uid: str
-    email: str
-
-
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -59,8 +53,8 @@ def get_all_feedbacks():
 
 
 @app.post("/addUser")
-def post_add(obj: Dummy_User_Item):
-    add_user({"name": obj.name, "email": obj.email}, obj.uid)
+def post_add(obj: User_Item):
+    add_user(obj, obj.id)
     return {"message": "user added"}
 
 
