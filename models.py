@@ -46,7 +46,23 @@ class PEG_Item(BaseModel):
     evaluator_name: str 
     no_of_project_days_evaluated: int 
     criteria: int 
-    status: str 
+    status: str
+
+class PEG_Result_Criteria(BaseModel):
+    name: str
+    rating: int
+    description: str
+    comments: str
+
+class PEG_Result(BaseModel):
+    peg_id: str
+    prof_industry_exp: PEG_Result_Criteria
+    proj_program_management: PEG_Result_Criteria
+    strategy_focus: PEG_Result_Criteria
+    customer_focus: PEG_Result_Criteria
+    employee_focus: PEG_Result_Criteria
+    excellence_focus: PEG_Result_Criteria
+    overall_rating: float
 
 class PEG_Criteria_Item(BaseModel):
     peg_criteria_id: str

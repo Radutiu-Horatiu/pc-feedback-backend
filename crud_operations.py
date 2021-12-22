@@ -19,7 +19,7 @@ def add_user(obj, uid):
 
 def update_user(id, obj):
   user_ref = db.collection("users").document(id)
-  user_ref.update({"id":id, "name":obj.name, "username":obj.username, "email":obj.email, "role":obj.role, "fiscal_year":obj.fiscal_year, "personal_number":obj.personal_number,"career_level":obj.career_level, "organisational_assignment":obj.organisational_assignment, "completedProfile":True})
+  user_ref.update(obj.dict())
   return {"message":"updated obj"}
 
 def delete_user(id):
