@@ -128,7 +128,8 @@ def post_add_feedback(obj: Feedback_Item):
 
 @app.post("/completePeg")
 def complete_peg(obj: PEG_Result):
-    db.collection("peg").document(obj.peg_id).update({"result":obj.dict()})
+    print(obj)
+    # db.collection("peg").document(obj.peg_id).update({"result":obj.dict()})
     return {"message": "peg completed"}
 
 
