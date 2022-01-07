@@ -9,6 +9,7 @@ from starlette.background import BackgroundTasks
 from crud_PEG import *
 from crud_operations import *
 from models import *
+from generateXL import complete_PEG
 from send_email import send_email_async, send_email_background
 
 app = FastAPI()
@@ -158,3 +159,8 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks):
     send_email_background(background_tasks, 'merge ma pl',
                           'calin_calinnemes@yahoo.com', "request mail")
     return 'Success'
+
+@app.get('/XLgenerator')
+def generateXLFile(id_peg: str):
+    complete_PEG(id_peg)
+
