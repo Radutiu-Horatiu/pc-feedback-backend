@@ -8,7 +8,7 @@ from models import User_Item
 
 
 
-def complete_PEG(id):
+def complete_PEG(id: str):
 
 
         workbook = xlsxwriter.Workbook('PEGS.xlsx')

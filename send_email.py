@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from starlette.background import BackgroundTasks
+from fastapi import FastAPI, File, UploadFile
 
 load_dotenv('.env')
 
@@ -30,12 +31,13 @@ conf = ConnectionConfig(
 )
 
 
-async def send_email_async(subject: str, email_to: str, body: str):
+async def send_email_async(subject: str, email_to: str, body: str, file: UploadFile = File(...)):
     message = MessageSchema(
         subject=subject,
         recipients=[email_to],
         body=body,
         subtype='html',
+        attachments=[file]
     )
 
     fm = FastMail(conf)

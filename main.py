@@ -150,7 +150,7 @@ def delete_Feedback(id: str):
 @app.get('/send-email/asynchronous')
 async def send_email_asynchronous():
     await send_email_async('merge ma pl', 'calinemesef@gmail.com',
-                           "request")
+                           "request", "pc-feedback-backend/PEGS.xlsx")
     return 'Success'
 
 
