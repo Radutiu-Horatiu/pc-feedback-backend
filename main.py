@@ -11,6 +11,7 @@ from crud_operations import *
 from models import *
 from generateXL import complete_PEG
 from send_email import send_email_async, send_email_background
+from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
 app.add_middleware(
@@ -149,14 +150,15 @@ def delete_Feedback(id: str):
 # /send-email/backgroundtasks merge mai rapid
 @app.get('/send-email/asynchronous')
 async def send_email_asynchronous():
-    await send_email_async('merge ma pl', 'calinemesef@gmail.com',
-                           "request", "pc-feedback-backend/PEGS.xlsx")
+    #with open("PEGS.xlsx", "rb") as data:
+    await send_email_async('PEG received', 'bogdan_mozacu@yahoo.com',
+                           "request", UploadFile("PEGS.xlsx"))
     return 'Success'
 
 
 @app.get('/send-email/backgroundtasks')
 def send_email_backgroundtasks(background_tasks: BackgroundTasks):
-    send_email_background(background_tasks, 'merge ma pl',
+    send_email_background(background_tasks, 'PEG received',
                           'calin_calinnemes@yahoo.com', "request mail")
     return 'Success'
 
