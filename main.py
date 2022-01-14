@@ -162,6 +162,16 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks):
                           'calin_calinnemes@yahoo.com', "request mail")
     return 'Success'
 
+
+@app.get('/send-email/asynchronous/excel')
+async def send_email_asynchronous_excel(id_peg: str):
+    complete_PEG(id_peg)
+    #with open("PEGS.xlsx", "rb") as data:
+    await send_email_async('PEG received', 'bogdan_mozacu@yahoo.com',
+                           "request", UploadFile("PEGS.xlsx"))
+    return 'Success'
+
+
 @app.get('/XLgenerator')
 def generateXLFile(id_peg: str):
     complete_PEG(id_peg)
